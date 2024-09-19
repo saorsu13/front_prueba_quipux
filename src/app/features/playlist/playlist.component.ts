@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormArray} from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-playlist',
@@ -14,8 +15,7 @@ export class PlaylistComponent implements OnInit {
   playlistForm!: FormGroup;
   genres: string[] = [];
 
-  constructor(private fb: FormBuilder, private apiService: ApiService) {
-  }
+  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) { } // Inyecta el Router
 
   ngOnInit(): void {
     this.playlistForm = this.fb.group({
@@ -43,7 +43,6 @@ export class PlaylistComponent implements OnInit {
     this.songs.push(songForm);
   }
 
-
   removeSong(index: number) {
     this.songs.removeAt(index);
   }
@@ -54,14 +53,11 @@ export class PlaylistComponent implements OnInit {
       return;
     }
 
-    //console.log('Playlist enviada:', this.playlistForm.value);
-
     this.apiService.addPlaylist(this.playlistForm.value).subscribe(
       response => {
         console.log('Playlist guardada con éxito:', response);
-        alert('Playlist Agregada');
         this.playlistForm.reset();
-        this.closeModal();
+        this.showSuccessModal();  // Muestra el modal al crear playlist
       },
       error => {
         console.error('Error al guardar la playlist:', error);
@@ -70,12 +66,24 @@ export class PlaylistComponent implements OnInit {
     );
   }
 
+  showSuccessModal() {
+    const modalElement = document.getElementById('successModal');
+    if (modalElement) {
+      modalElement.style.display = 'block';
+    }
+  }
+
   closeModal() {
-    const modalElement = document.getElementById('modal-id');
+    const modalElement = document.getElementById('successModal');
     if (modalElement) {
       modalElement.style.display = 'none';
     }
   }
+
+  goToList() {
+    this.router.navigate(['/list-playlist']);
+  }
+
   loadGenres() {
     this.apiService.getGenres().subscribe(
       (data: string[]) => {
@@ -88,5 +96,3 @@ export class PlaylistComponent implements OnInit {
     );
   }
 }
-
-

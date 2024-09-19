@@ -1,0 +1,23 @@
+<div class="playlist-container">
+  <div class="background-overlay"></div>
+  <div class="playlist-content">
+
+    <!-- Botón con ícono de volver -->
+    <button (click)="goToCreatePlaylist()" class="back-button">
+      <span class="arrow-icon">&lt;</span> Volver
+    </button>
+
+    <h2>Lista de Playlists</h2>
+
+    <div *ngIf="filteredPlaylists.length > 0; else noPlaylists">
+      <div *ngFor="let playlist of filteredPlaylists" class="playlist-item">
+        <h3>{{ playlist.name }}</h3>
+        <p>{{ playlist.description }}</p>
+      </div>
+    </div>
+
+    <ng-template #noPlaylists>
+      <p>No se encontraron playlists.</p>
+    </ng-template>
+  </div>
+</div>
