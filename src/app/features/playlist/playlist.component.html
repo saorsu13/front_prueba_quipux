@@ -1,0 +1,38 @@
+<h2>Crear nueva Playlist</h2>
+<form [formGroup]="playlistForm" (ngSubmit)="addPlaylist()">
+  <label for="playlistName">Nombre de la Playlist</label>
+  <input id="playlistName" formControlName="name" type="text" required>
+
+  <label for="playlistDescription">Descripción</label>
+  <input id="playlistDescription" formControlName="description" type="text">
+
+  <h2>Añadir Canción a la Playlist</h2>
+  <div formArrayName="songs">
+    <div *ngFor="let song of songs.controls; let i = index" [formGroupName]="i">
+      <h3>Canción {{ i + 1 }}</h3>
+
+      <label for="songTitle">Título de la canción</label>
+      <input id="songTitle" formControlName="title" type="text" required>
+
+      <label for="songArtist">Artista</label>
+      <input id="songArtist" formControlName="artist" type="text" required>
+
+      <label for="songAlbum">Álbum</label>
+      <input id="songAlbum" formControlName="album" type="text">
+
+      <label for="songYear">Año</label>
+      <input id="songYear" formControlName="year" type="text">
+
+      <label for="songGenre">Género</label>
+      <select id="songGenre" formControlName="genre">
+        <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+      </select>
+
+
+      <button type="button" (click)="removeSong(i)">Eliminar Canción</button>
+    </div>
+  </div>
+
+  <button type="button" (click)="addSong()">Añadir Canción</button>
+  <button type="submit">Crear Playlist</button>
+</form>
