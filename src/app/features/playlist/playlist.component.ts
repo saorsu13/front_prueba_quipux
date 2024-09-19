@@ -36,7 +36,7 @@ export class PlaylistComponent implements OnInit {
       title: ['', Validators.required],
       artist: ['', Validators.required],
       album: [''],
-      year: [''],
+      releaseYear: [''],
       genre: ['', Validators.required]
     });
 

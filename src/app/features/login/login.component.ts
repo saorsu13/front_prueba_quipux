@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 
@@ -8,7 +8,7 @@ import { ApiService } from '../../services/api.service';
   standalone: true,
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   errorMessage: string = '';
@@ -53,5 +53,8 @@ export class LoginComponent {
   handlePasswordInput(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     this.password = inputElement.value;
+  }
+  ngOnInit(): void {
+    this.apiService.logout();
   }
 }

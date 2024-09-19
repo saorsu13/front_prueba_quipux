@@ -11,7 +11,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  private getToken(): string | null {
+   getToken(): string | null {
     const token = localStorage.getItem('jwt');
     console.log(localStorage.getItem('jwt'));
     return token;
@@ -32,7 +32,13 @@ export class ApiService {
       username: username,
       password: password
     };
-    return this.http.post(`${this.apiUrl}/login`, loginData, { responseType: 'text' });
+    return this.http.post(`${this.apiUrl}/login`, loginData, { responseType: 'text' })
+      .pipe(
+        map(token => {
+          localStorage.setItem('jwt', token);
+          return token;
+        })
+      );
   }
 
   addPlaylist(playlist: any): Observable<any> {
@@ -61,5 +67,10 @@ export class ApiService {
     return this.http.delete(`${this.apiUrl}/lists/${name}`, {
       headers: this.getHeaders()
     });
+  }
+
+  logout() {
+    localStorage.removeItem('jwt');
+    console.log('Token eliminado, el usuario ha cerrado sesión');
   }
 }
