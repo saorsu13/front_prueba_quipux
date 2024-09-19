@@ -49,7 +49,12 @@ export class PlaylistComponent implements OnInit {
   }
 
   addPlaylist() {
-    console.log('Playlist enviada:', this.playlistForm.value);
+    if (this.playlistForm.invalid) {
+      this.playlistForm.markAllAsTouched();
+      return;
+    }
+
+    //console.log('Playlist enviada:', this.playlistForm.value);
 
     this.apiService.addPlaylist(this.playlistForm.value).subscribe(
       response => {
