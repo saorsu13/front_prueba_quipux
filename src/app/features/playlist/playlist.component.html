@@ -1,6 +1,12 @@
 <div class="playlist-container">
   <div class="background-overlay"></div>
   <div class="playlist-content">
+
+    <!-- Botón para ir a la lista de playlists -->
+    <button (click)="goToList()" class="go-to-list-button">
+      Ir a la lista de Playlists <span class="arrow-icon">&gt;</span>
+    </button>
+
     <h2>Crear nueva Playlist</h2>
     <form [formGroup]="playlistForm" (ngSubmit)="addPlaylist()">
       <label for="playlistName">Nombre de la Playlist</label>
@@ -51,5 +57,14 @@
         <button type="submit" [disabled]="songs.length === 0">Crear Playlist</button>
       </div>
     </form>
+  </div>
+
+  <!-- Modal de éxito -->
+  <div id="successModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close-button" (click)="closeModal()">&times;</span>
+      <h2>¡Playlist creada exitosamente!</h2>
+      <button (click)="goToList()">Ir a la lista de Playlists</button>
+    </div>
   </div>
 </div>

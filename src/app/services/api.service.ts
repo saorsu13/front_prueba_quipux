@@ -56,6 +56,17 @@ export class ApiService {
     );
   }
 
+  getAllPlaylists(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/lists/getPlaylist`, {
+      headers: this.getHeaders()
+    }).pipe(
+      map((data: any) => {
+        console.log('Datos recibidos de la API:', data); // Agrega esto
+        return data;
+      })
+    );
+  }
+
 
   getPlaylistByName(name: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/lists/${name}`, {
