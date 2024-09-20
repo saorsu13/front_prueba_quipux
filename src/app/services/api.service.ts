@@ -67,12 +67,12 @@ export class ApiService {
     );
   }
 
-
   getPlaylistByName(name: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/lists/${name}`, {
+    return this.http.get(`${this.apiUrl}/lists/getBy/${name}`, {
       headers: this.getHeaders()
     });
   }
+
 
   deletePlaylist(name: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/lists/${name}`, {

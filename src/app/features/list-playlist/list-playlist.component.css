@@ -46,6 +46,7 @@
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   max-height: calc(100vh - 200px);
+  margin-top: 20px;
 }
 
 h2 {
@@ -118,4 +119,14 @@ li {
 .arrow-icon {
   font-size: 24px;
   margin-right: 5px;
+}
+
+.search-bar {
+  width: 97%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: inset 3px 3px 6px #ccc, inset -3px -3px 6px #fff;
+  font-size: 16px;
 }

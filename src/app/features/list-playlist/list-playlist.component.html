@@ -1,14 +1,16 @@
 <div class="playlist-container">
   <div class="background-overlay"></div>
+  <div class="playlist-content">
 
-  <div class="playlist-header">
     <button (click)="goToCreatePlaylist()" class="back-button">
       <span class="arrow-icon">&lt;</span> Volver
     </button>
-    <h2>Lista de Playlists</h2>
-  </div>
 
-  <div class="playlist-content">
+    <h2>Lista de Playlists</h2>
+
+    <!-- Buscador -->
+    <input type="text" placeholder="Buscar playlist" [(ngModel)]="searchTerm" (keyup.enter)="searchPlaylist()" class="search-bar">
+
     <div *ngIf="filteredPlaylists.length > 0; else noPlaylists">
       <div *ngFor="let playlist of filteredPlaylists" class="playlist-item">
         <h3>{{ playlist.name }}</h3>
@@ -18,7 +20,7 @@
           <h4>Canciones:</h4>
           <ul>
             <li *ngFor="let song of playlist.songs">
-              {{ song.title }} - {{ song.artist }} ({{ song.album }}, {{ song.genre }})
+              <strong>{{ song.title }}</strong> - {{ song.artist }} ({{ song.album }}, {{ song.genre }})
             </li>
           </ul>
         </div>
