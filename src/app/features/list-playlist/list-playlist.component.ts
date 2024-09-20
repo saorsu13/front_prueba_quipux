@@ -9,7 +9,7 @@ import { JsonPipe, CommonModule } from '@angular/common';
   templateUrl: './list-playlist.component.html',
   imports: [
     JsonPipe,
-    CommonModule  // Asegúrate de importar CommonModule para usar *ngIf y *ngFor
+    CommonModule
   ],
   styleUrls: ['./list-playlist.component.css']
 })

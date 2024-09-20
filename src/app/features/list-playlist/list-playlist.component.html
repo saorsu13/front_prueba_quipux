@@ -1,7 +1,6 @@
 <div class="playlist-container">
   <div class="background-overlay"></div>
 
-  <!-- Contenedor superior para el título -->
   <div class="playlist-header">
     <button (click)="goToCreatePlaylist()" class="back-button">
       <span class="arrow-icon">&lt;</span> Volver
@@ -9,15 +8,12 @@
     <h2>Lista de Playlists</h2>
   </div>
 
-  <!-- Contenedor inferior para la lista de playlists -->
   <div class="playlist-content">
     <div *ngIf="filteredPlaylists.length > 0; else noPlaylists">
-      <!-- Mostrar las playlists -->
       <div *ngFor="let playlist of filteredPlaylists" class="playlist-item">
         <h3>{{ playlist.name }}</h3>
         <p>{{ playlist.description }}</p>
 
-        <!-- Listado de canciones dentro de la playlist -->
         <div *ngIf="playlist.songs && playlist.songs.length > 0">
           <h4>Canciones:</h4>
           <ul>

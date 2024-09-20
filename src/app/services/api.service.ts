@@ -61,7 +61,7 @@ export class ApiService {
       headers: this.getHeaders()
     }).pipe(
       map((data: any) => {
-        console.log('Datos recibidos de la API:', data); // Agrega esto
+        console.log('Datos recibidos de la API:', data);
         return data;
       })
     );
